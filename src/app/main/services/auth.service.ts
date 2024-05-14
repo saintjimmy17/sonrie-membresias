@@ -29,16 +29,28 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<any> {
     return await this.afAuth.signInWithEmailAndPassword(email, password);
+
   }
+
+/*   register(user: any): Promise<any> {
+    return this.afAuth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then((res) => {
+        this.setUserData(res.user, user.name  user.username );
+      });
+  } */
 
   register(user: any): Promise<any> {
     return this.afAuth
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((res) => {
-        this.setUserData(res.user, user.name /* user.username */);
+        res.user!.updateProfile({
+          displayName: user.name,
+          phoneNumber: user.phoneNumber
+        })
+        //this.setUserData(res.user, user.name /* user.username */);
       });
   }
-
   /* register(user: any): Promise<any> {
   if (user.email === 'italianomariano198@gmail.com') {
     return this.afAuth.createUserWithEmailAndPassword(user.email, user.password).then((res) => {
@@ -51,7 +63,7 @@ export class AuthService {
   }
 } */
 
-  setUserData(user: any, name?: string /* username?: string */): Promise<any> {
+  setUserData(user: any, name?: string /* username?: string */, phoneNumber?: string): Promise<any> {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -61,7 +73,7 @@ export class AuthService {
       displayName: name || '',
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-
+      phoneNumber: user.phoneNumber || '',
       createAt: serverTimestamp(),
     };
     return userRef.set(userData, {

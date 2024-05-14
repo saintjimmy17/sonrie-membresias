@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit{
       /* Para visualizar los datos del registrado */
       this.authService.userData.subscribe((userData) =>{
         this.user = userData;
-        console.log(this.user.displayName)
+        console.log(this.user.phoneNumber)
       })
 
 

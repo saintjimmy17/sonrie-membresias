@@ -7,6 +7,7 @@
 <div *ngIf="user">
   <p>Usuario: {{ user.displayName || 'Nombre no especificado'}}</p>
   <p>Email: {{ user.email }}</p>
-  <p>Numero de afiliado: {{user.uid}}</p>
+  <p>ID de afiliado: {{user.uid}}</p>
+  <p>Numero de afiliado: {{user.phoneNumber || 'Numero no encontrado'}}</p>
   <p>Verificado: {{user.emailVerified}}</p>
 </div>

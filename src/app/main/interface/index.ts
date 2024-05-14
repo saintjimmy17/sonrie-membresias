@@ -7,5 +7,5 @@ export interface User {
   username?: string;
   createAt: any;
   bio?: string;
-
+  phoneNumber: string;
 }
