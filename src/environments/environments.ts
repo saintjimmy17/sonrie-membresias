@@ -8,4 +8,6 @@ export const environment = {
     appId: '1:538542720323:web:805a2195e433656761dbf6',
     measurementId: 'G-M3KFTD3DV6',
   },
+  production: true,
+  api: 'https://us-central1-sonrie-membresias-60f58.cloudfunctions.net/api'
 };

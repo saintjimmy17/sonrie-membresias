@@ -1,0 +1,14 @@
+.navbar-img{
+  width: 45%;
+}
+
+.navbar-button{
+  background-color: #deaeac;
+  text-transform: uppercase;
+  border-radius: 25px;
+  border: none;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 500;
+}

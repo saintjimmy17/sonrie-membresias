@@ -6,6 +6,10 @@ import { LayoutComponent } from './layout/layout.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SendRegisterComponent } from './send-register/send-register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -13,11 +17,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     LayoutComponent,
     LoginComponent,
     RegisterComponent,
+    SendRegisterComponent,
+    NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class MainModule { }

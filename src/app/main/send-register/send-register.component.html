@@ -1,0 +1,7 @@
+<form [formGroup]="sendForm" (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Name" formControlName="name">
+  <input type="text" placeholder="LastName" formControlName="lastName">
+  <input type="text" placeholder="Email" formControlName="email">
+  <input type="text" placeholder="Company" formControlName="company">
+  <button type="submit">Enviar registro</button>
+</form>

@@ -1,19 +1,119 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+const functions = require("firebase-functions");
+const cors = require("cors");
+const nodeMailer = require("nodemailer");
+var express = require("express");
+var app = express();
+app.use(cors({ origin: true }));
 
-const {onRequest} = require("firebase-functions/v2/https");
+/* Test del backend */
+app.get("/", (req, res) => {
+  console.log("si funciona");
+  return res.json({ ok: "ok" });
+});
+
+const { onRequest } = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+app.post("/sendRegisterMail", async (req, res) => {
+  var body = req.body;
+  if (
+    body.name == null ||
+    body.name == "" ||
+    body.name == undefined ||
+    body.name.length > 100 ||
+    body.name.length < 2
+  ) {
+    return res.status(500).json({
+      sucess: false,
+      err: "Ocurrió un problema con el campo name.",
+    });
+  }
+  //Validar el campo lastName
+  if (
+    body.lastName == null ||
+    body.lastName == "" ||
+    body.lastName == undefined ||
+    body.lastName.length > 100 ||
+    body.lastName.length < 2
+  ) {
+    return res.status(500).json({
+      sucess: false,
+      err: "Ocurrió un problema con el campo lastName.",
+    });
+  }
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+  //Validar el campo email
+  if (
+    body.email == null ||
+    body.email == "" ||
+    body.email == undefined ||
+    body.email.length > 100 ||
+    body.lastName.length < 2
+  ) {
+    return res.status(500).json({
+      err: "Ocurrió un problema con el campo email.",
+    });
+  }
+
+  //Validar el campo company
+  if (
+    body.company == null ||
+    body.company == "" ||
+    body.company == undefined ||
+    body.company.length > 100 ||
+    body.company.length < 2
+  ) {
+    return res.status(500).json({
+      sucess: false,
+      err: "Ocurrió un problema con el campo company.",
+    });
+  }
+
+  //Enviar mail
+  try {
+    var transporter = await setTransporter();
+    var statusEnvio = await transporter.sendMail({
+      from: "Grupo Sonríe <noreply@gruposonrie.com>",
+      to: "italianomariano198@gmail.com",  //Aqui va el email que va a llegar toda la info
+      subject: "Nueva peticion de registro",
+      text: "texto del cuerpo del email plano",
+      html: `<strong>Nombre:</strong> ${req.body.name} <br> <strong>Apellido: </strong>${req.body.lastName} <br> <strong>Email: ${req.body.email}</strong> <br> <strong>Compañia: <strong/>${req.body.company} `,
+    });
+    //Verificar si se envio el correo
+    if (statusEnvio.rejected.length > 0) {
+      return res.status(500).json({
+        sucess: false,
+        err: "Ocurrió un problema el enviar el correo. V-55",
+      });
+    }
+    return res.json({
+      success: true,
+      msg: "Mensaje enviado con exito",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      sucess: false,
+      err: "Ocurrió un problema el enviar el correo. V-66",
+    });
+  }
+});
+
+//Funcion para crear el transporter
+async function setTransporter() {
+  try {
+    let transporter = nodeMailer.createTransport({
+      host: "c1971935.ferozo.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: "info@gruposonrie.com",
+        pass: "sonrisaDe10@",
+      },
+      from: "Grupo Sonríe <noreply@gruposonrie.com>",
+    });
+    return transporter;
+  } catch (error) {}
+}
+
+exports.api = functions.https.onRequest(app);

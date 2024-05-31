@@ -8,6 +8,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environments';
+import { HttpClientModule } from '@angular/common/http';
+import { MailService } from './main/services/mail.service';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { environment } from 'src/environments/environments';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@
 <div>
   <button routerLink="login">Login</button>
   <button routerLink="register">Register</button>
+  <button routerLink="registrarse">Pedir membresia</button>
 </div>
 
 <div *ngIf="user">
@@ -10,4 +11,5 @@
   <p>ID de afiliado: {{user.uid}}</p>
   <p>Numero de afiliado: {{user.phoneNumber || 'Numero no encontrado'}}</p>
   <p>Verificado: {{user.emailVerified}}</p>
+
 </div>

@@ -1,0 +1,56 @@
+
+  <footer class="text-center text-lg-start footer">
+    <div class="container d-flex justify-content-center">
+      <img
+        src="../../../../assets/img/Logo-final-pagina.svg"
+        alt=""
+        width="50px"
+      />
+    </div>
+    <div class="container d-flex justify-content-center mt-2">
+      <h2>¡Contactanos!</h2>
+    </div>
+    <div class="container d-flex justify-content-center">
+      <button
+        type="button"
+        class="btn btn-floating mx-2"
+        (click)="goTo('https://www.instagram.com/sonrie_ar/')"
+      >
+        <img
+          src="../../../../assets/img/LOGO-instagram-final-pagina.svg"
+          alt=""
+          width="40px"
+        />
+      </button>
+      <button
+        type="button"
+        class="btn btn-floating mx-2"
+        (click)="
+          goTo(
+            'https://api.whatsapp.com/send?phone=5493624692530&text=Hola!%20Necesito%20agendar%20una%20cita%20y%20si%20me%20pueden%20dar%20informaci%C3%B3n%20sobre%20los%20tratamientos.%20Gracias'
+          )
+        "
+      >
+        <img
+          src="../../../../assets/img/Logo-FB-final-pagina-13 (1).svg"
+          alt=""
+          width="40px"
+        />
+      </button>
+    </div>
+
+    <div class="container d-flex justify-content-center py-3">
+      <p>Sonríe Dental Group | Ayacucho 137, 1er piso. Resistencia, Chaco. Argentina | +54 9 362 469-2530</p>
+    </div>
+
+    <!-- Copyright -->
+    <div
+      class="text-center text-white "
+
+    >
+      Copyright © {{ year }} Sonríe Dental Group
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+<!-- End of .container -->
