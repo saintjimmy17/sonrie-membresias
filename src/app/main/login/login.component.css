@@ -25,6 +25,10 @@
   border-radius: 15px !important;
 }
 
+.pointer{
+  cursor: pointer;
+}
+
 .submit-button{
   border: none;
   background-color: #deaeac;
@@ -46,6 +50,56 @@
   padding: 7px 20px 7px 20px;
 }
 
+.logout-button{
+  border: none;
+  background-color: #deaeac;
+  color: white;
+  border-radius: 25px;
+  margin: 10px;
+  margin-bottom: 25px;
+  font-size: 20px;
+  padding: 7px 20px 7px 20px;
+}
+
+.download-button{
+  border: none;
+  background-color: #deaeac;
+  color: white;
+  border-radius: 25px;
+  margin-bottom: 25px;
+  font-size: 20px;
+  padding: 7px 20px 7px 20px;
+}
+
 .company-text{
   font-weight: bolder;
+}
+
+
+.credential-container{
+  width: 700px;
+  border: 1px solid #e8e8e8;
+  border-radius: 15px !important;
+}
+
+.text-member{
+  color: #6da5d5;
+}
+
+
+@media screen and (max-width: 430px){
+  .credential-container{
+    width: 350px;
+  }
+
+  .credential-img{
+    width: 20%;
+    margin: -5px !important;
+    margin-left: 10px !important;
+    margin-top: 10px !important;
+  }
+
+  .crendential-logo{
+    width: 45%;
+  }
 }

@@ -7,10 +7,10 @@ import { SendRegisterComponent } from './send-register/send-register.component';
 
 const routes: Routes = [
   {
-    path:'', component: LayoutComponent,
+    path:'', component: LoginComponent,
   },
   {
-    path:'login', component: LoginComponent
+    path:'layout', component: LayoutComponent
   },
   {
     path: 'register', component: RegisterComponent

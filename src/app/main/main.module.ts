@@ -10,6 +10,7 @@ import { SendRegisterComponent } from './send-register/send-register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ModalPasswordComponent } from './components/modal-password/modal-password.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FooterComponent } from './components/footer/footer.component';
     SendRegisterComponent,
     NavbarComponent,
     FooterComponent,
+    ModalPasswordComponent,
   ],
   imports: [
     CommonModule,

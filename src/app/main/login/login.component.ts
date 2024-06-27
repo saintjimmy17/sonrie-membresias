@@ -7,6 +7,8 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { firstValueFrom } from 'rxjs';
+import { PdfService } from '../services/pdf.service';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +17,25 @@ import { firstValueFrom } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  user: any;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private afs: AngularFirestore) { }
+  showModal: boolean = false;
+
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private afs: AngularFirestore, private pdfService: PdfService, private modalService: ModalService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
+    });
+
+    this.authService.userData.subscribe((userData) => {
+      this.user = userData || {
+        company: '',
+        displayName: '',
+        membershipNumber: ''
+      };
+      console.log(this.user?.membershipNumber);
     });
   }
 
@@ -52,5 +66,25 @@ export class LoginComponent implements OnInit {
     } else {
       console.log('Formulario inválido. Por favor, complete todos los campos correctamente.');
     }
+  }
+
+  signOut() {
+    this.authService.signOut();
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn;
+  }
+
+  downloadCredentialAsPDF() {
+    this.pdfService.downloadDivAsPDF('credential-container', 'credential.pdf');
+  }
+
+  openModal() {
+    this.modalService.openModal();
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }

@@ -19,7 +19,8 @@ export class SendRegisterComponent implements OnInit {
       name:['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      company: ['', Validators.required]
+      company: ['', Validators.required],
+      phoneNumber: ['', Validators.required]
     })
   }
 
@@ -31,9 +32,10 @@ export class SendRegisterComponent implements OnInit {
     /* Datos enviados al mail */
     this.emailApi.sendRegisterMail(
       data.name,
-      data.lastName,
+
       data.email,
-      data.company
+      data.company,
+      data.phoneNumber
     ).subscribe(
       (data: any) => {
         console.log('Formulario enviado');

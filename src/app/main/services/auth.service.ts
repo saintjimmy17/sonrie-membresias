@@ -54,12 +54,12 @@ export class AuthService {
           displayName: user.name
         });
         // Guardar los datos del usuario en Firestore
-        return this.setUserData(res.user, user.name, user.phoneNumber);
+        return this.setUserData(res.user, user.name, user.membershipNumber, user.phoneNumber, user.company);
       });
   }
 
   // Método para establecer los datos del usuario en Firestore
-  setUserData(user: any, name: string, phoneNumber: string): Promise<any> {
+  setUserData(user: any, name: string, membershipNumber: string, phoneNumber:string, company: string): Promise<any> {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
       `users/${user.uid}`
     );
@@ -67,9 +67,11 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: name || '',
-      photoURL: user.photoURL,
+
       emailVerified: user.emailVerified,
+      membershipNumber: membershipNumber,
       phoneNumber: phoneNumber,
+      company: company,
       createAt: serverTimestamp(),
     };
     // Guardar los datos del usuario en el documento correspondiente en Firestore

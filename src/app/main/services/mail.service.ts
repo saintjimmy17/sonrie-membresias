@@ -20,12 +20,13 @@ export class MailService {
   }
 
   /* Enviar mail de la pagina de pedido de registro con todos los campos */
-  sendRegisterMail(name: any, lastName: any, email: any, company: any){
+  sendRegisterMail(name: any, email: any, company: any, phoneNumber: any){
     var data = {
       name: name,
-      lastName: lastName,
+
       email: email,
-      company: company
+      company: company,
+      phoneNumber: phoneNumber
     }
     return this.http.post(`${environment.api}/sendRegisterMail`, data)
   }

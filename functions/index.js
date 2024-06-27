@@ -29,7 +29,7 @@ app.post("/sendRegisterMail", async (req, res) => {
     });
   }
   //Validar el campo lastName
-  if (
+  /* if (
     body.lastName == null ||
     body.lastName == "" ||
     body.lastName == undefined ||
@@ -40,7 +40,7 @@ app.post("/sendRegisterMail", async (req, res) => {
       sucess: false,
       err: "Ocurrió un problema con el campo lastName.",
     });
-  }
+  } */
 
   //Validar el campo email
   if (
@@ -48,7 +48,7 @@ app.post("/sendRegisterMail", async (req, res) => {
     body.email == "" ||
     body.email == undefined ||
     body.email.length > 100 ||
-    body.lastName.length < 2
+    body.email.length < 2
   ) {
     return res.status(500).json({
       err: "Ocurrió un problema con el campo email.",
@@ -69,6 +69,20 @@ app.post("/sendRegisterMail", async (req, res) => {
     });
   }
 
+   //Validar el campo phoneNumber
+   if (
+    body.phoneNumber == null ||
+    body.phoneNumber == "" ||
+    body.phoneNumber == undefined ||
+    body.phoneNumber.length > 100 ||
+    body.phoneNumber.length < 2
+  ) {
+    return res.status(500).json({
+      sucess: false,
+      err: "Ocurrió un problema con el campo phoneNumber.",
+    });
+  }
+
   //Enviar mail
   try {
     var transporter = await setTransporter();
@@ -77,7 +91,7 @@ app.post("/sendRegisterMail", async (req, res) => {
       to: "italianomariano198@gmail.com",  //Aqui va el email que va a llegar toda la info
       subject: "Nueva peticion de registro",
       text: "texto del cuerpo del email plano",
-      html: `<strong>Nombre:</strong> ${req.body.name} <br> <strong>Apellido: </strong>${req.body.lastName} <br> <strong>Email: ${req.body.email}</strong> <br> <strong>Compañia: <strong/>${req.body.company} `,
+      html: `<strong>Nombre:</strong> ${req.body.name}<br> <strong>Email: ${req.body.email}</strong> <br> <strong>Compañia: <strong/>${req.body.company} <br> <strong>Teléfono: <strong/>${req.body.phoneNumber} `,
     });
     //Verificar si se envio el correo
     if (statusEnvio.rejected.length > 0) {

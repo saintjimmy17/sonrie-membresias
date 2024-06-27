@@ -14,7 +14,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.authService.userData.subscribe((userData) => {
       this.user = userData;
-      console.log(this.user?.phoneNumber);
+      console.log(this.user?.membershipNumber);
     });
   }
 }

@@ -12,3 +12,22 @@
   padding-bottom: 10px;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 420px) {
+  .navbar-brand{
+    width: 50%;
+  }
+
+  .navbar-img{
+    width: 70%;
+  }
+
+  .navbar-button{
+    width: 40%;
+    font-size: 10px;
+  }
+}

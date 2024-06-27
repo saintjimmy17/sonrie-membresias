@@ -17,19 +17,22 @@ export class RegisterComponent implements OnInit{
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         name:['', Validators.required],
-        phoneNumber:['', Validators.required]
+
+        membershipNumber:['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        company: ['', Validators.required]
       })
   }
 
   /* Funcion para crear usuario */
   handleSubmit(): void {
     if (this.registerForm.valid) {
-      const { email, password, name, phoneNumber } = this.registerForm.value;
+      const { email, password, name, membershipNumber, phoneNumber, company, lastName } = this.registerForm.value;
 
-      this.authService.register({ email, password, name, phoneNumber })
+      this.authService.register({ email, password, name, lastName, membershipNumber, phoneNumber, company })
         .then(() => {
           console.log('Usuario registrado exitosamente en Firebase');
-          console.log(phoneNumber)
+          console.log(membershipNumber)
           // Puedes redirigir al usuario a otra página o mostrar un mensaje de éxito aquí
         })
         .catch((error) => {

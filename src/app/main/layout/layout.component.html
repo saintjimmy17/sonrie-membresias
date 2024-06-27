@@ -6,10 +6,11 @@
 </div>
 
 <div *ngIf="user">
-  <p>Usuario: {{ user.displayName || 'Nombre no especificado'}}</p>
+  <p>Nombre: {{ user.displayName || 'Nombre no especificado'}}</p>
+  <p>Apellido: {{user.lastName || 'Apellido no encontrado'}}</p>
   <p>Email: {{ user.email }}</p>
   <p>ID de afiliado: {{user.uid}}</p>
-  <p>Numero de afiliado: {{user.phoneNumber || 'Numero no encontrado'}}</p>
-  <p>Verificado: {{user.emailVerified}}</p>
-
+  <p>Numero de afiliado: {{user.membershipNumber || 'Numero no encontrado'}}</p>
+  <p>Telefono: {{user.phoneNumber}}</p>
+  <p>Empresa: {{user.company}}</p>
 </div>

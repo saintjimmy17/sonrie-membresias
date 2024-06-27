@@ -1,7 +1,10 @@
 <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
   <input type="text" placeholder="Email" formControlName="email">
-  <input type="text" placeholder="Name" formControlName="name">
-  <input type="text" placeholder="Numero de afiliado" formControlName="phoneNumber">
+  <input type="text" placeholder="Nombre" formControlName="name">
+
+  <input type="text" placeholder="Numero de afiliado" formControlName="membershipNumber">
+  <input type="text" placeholder="Numero de telefono" formControlName="phoneNumber">
+  <input type="text" placeholder="Empresa" formControlName="company">
   <input type="password" placeholder="Password" formControlName="password">
-  <button type="submit">Sign Up</button>
+  <button type="submit">Registrar</button>
 </form>
