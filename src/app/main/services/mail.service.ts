@@ -30,4 +30,11 @@ export class MailService {
     }
     return this.http.post(`${environment.api}/sendRegisterMail`, data)
   }
+
+  sendRecoverPassword(email: any) {
+    var data = {
+      email: email
+    }
+    return this.http.post(`${environment.api}/sendRecoverPassword`, data)
+  }
 }

@@ -113,6 +113,46 @@ app.post("/sendRegisterMail", async (req, res) => {
   }
 });
 
+//Funcion que envia el mail para recuperar la contraseña
+app.post('/sendRecoverPassword', async (req, res) => {
+  var body = req.body
+  //Validar el campo email
+  if(body.email == null || body.email == '' || body.email == undefined || body.email.length > 100 || body.email.length < 2) {
+    return res.status(500).json({
+      err: 'Ocurrió un problema con el campo email.'
+    })
+  }
+
+  //Enviar mail
+  try {
+    var transporter = await setTransporter();
+    var statusEnvio = await transporter.sendMail({
+      from: "Grupo Sonríe <noreply@gruposonrie.com>",
+      to: "italianomariano198@gmail.com",  //Aqui va el email que va a llegar toda la info
+      subject: "Nueva peticion de recuperación de contraseña",
+      text: "texto del cuerpo del email plano",
+      html: `<strong>Email: ${req.body.email}</strong> ha solicitado recuperar su contraseña`,
+    });
+    //Verificar si se envio el correo
+    if (statusEnvio.rejected.length > 0) {
+      return res.status(500).json({
+        sucess: false,
+        err: "Ocurrió un problema el enviar el correo. V-55",
+      });
+    }
+    return res.json({
+      success: true,
+      msg: "Mensaje enviado con exito",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      sucess: false,
+      err: "Ocurrió un problema el enviar el correo. V-66",
+    });
+  }
+})
+
 //Funcion para crear el transporter
 async function setTransporter() {
   try {
